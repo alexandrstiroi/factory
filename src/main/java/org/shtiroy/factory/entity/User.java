@@ -179,6 +179,6 @@ public class User implements UserDetails {
 
     @Override
     public String toString() {
-        return userName;
+        return userName + " | " + getUserRole().toString();
     }
 }
