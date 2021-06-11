@@ -8,11 +8,14 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
     User findByUserName(String userName);
+
+    List<User> findAllByUserActive(Boolean userActive);
 
     @Modifying
     @Transactional
@@ -33,4 +36,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "email = ?5 WHERE id = ?6",
             nativeQuery = true)
     void updateUserWithPassword(String password, Long userRole, String lastName, String firstName, String email, Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE working_data.t_user SET user_active = false WHERE id = ?1",
+            nativeQuery = true)
+    void userDeactivation(Long id);
 }
