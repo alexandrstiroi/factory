@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Мануфактура уюта</title>
+    <meta charset="utf-8">
+    <link type="text/css" th:href="@{/assets/css/style.css}" href="./assets/css/style.css" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/assets/css/menu.css}" href="./assets/css/menu.css" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/assets/css/e_style.css}" href="./assets/css/e_style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="parent">
+    <div class="div_header" th:insert="fragments/menu">
+
+    </div>
+    <div class="div_body">
+        <form action="/admin/employee_page" method="post" th:object="${employee}">
+            <div class="e_form">
+                <div class="e_form_header"><h1>Сотрудник</h1></div>
+                <div class="e_form_lastName"><span class="label_edit">Фамилия</span> </div>
+                <div class="e_form_lastName_text">
+                    <input class="input_edit" type="text" name="lastName" placeholder="Фамилия" autocomplete="off"/>
+                </div>
+                <div class="e_form_firstName"><span class="label_edit">Имя</span> </div>
+                <div class="e_form_firstName_text">
+                    <input class="input_edit" type="text" name="firstName" placeholder="Имя" autocomplete="off"/>
+                </div>
+                <div class="e_form_middleName"><span class="label_edit">Отчество</span> </div>
+                <div class="e_form_middleName_text">
+                    <input class="input_edit" type="text" name="middleName" placeholder="Отчество" autocomplete="off" />
+                </div>
+                <div class="e_form_dateBirth"><span class="label_edit">Дата рождения</span> </div>
+                <div class="e_form_dateBirth_text">
+                    <input class="input_edit" type="date" name="dateBirth" placeholder="Дата рождения" autocomplete="off">
+                </div>
+                <div class="e_form_footer">
+                    <button class="btn_new">Сохранить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="div_footer"> <h1>footer</h1> </div>
+</div>
+
+</body>
+</html>

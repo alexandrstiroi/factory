@@ -1,0 +1,93 @@
+.u_form {
+	width: 480px;
+    height: 500px;
+		
+	position: absolute;
+    top: 15%;
+    left: 50%;
+    margin-top: 100px;
+    margin-left: -270px;
+	
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(8, 1fr);
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	
+	background: #FFFFFF;
+	border-radius: 10px;
+	font-family: Courier New;
+	border-radius: 16px;
+	background: #F8F8F8;
+	box-shadow:  5px 5px 22px #ababab,
+             -5px -5px 22px #ffffff;
+}
+
+.u_form_header { 
+	margin-left: 5px;
+	grid-area: 1 / 1 / 2 / 4;
+	border-bottom: 1px solid #EEEEEE
+	}
+.u_form_username {
+	margin-left: 5px;
+	grid-area: 2 / 1 / 3 / 2; 
+	border-bottom: 1px solid #EEEEEE
+	}
+.u_form_username_text { 
+	grid-area: 2 / 2 / 3 / 4; 
+	border-bottom: 1px solid #EEEEEE
+}
+.u_form_password { 
+	margin-left: 5px;
+	grid-area: 3 / 1 / 4 / 2; 
+	border-bottom: 1px solid #EEEEEE
+}
+.u_form_password_text {
+	grid-area: 3 / 2 / 4 / 4; 
+	border-bottom: 1px solid #EEEEEE
+}
+.u_form_role {
+	margin-left: 5px;
+	grid-area: 4 / 1 / 5 / 2;
+	border-bottom: 1px solid #EEEEEE
+	}
+.u_form_role_text { 
+	grid-area: 4 / 2 / 5 / 4;
+	border-bottom: 1px solid #EEEEEE
+	}
+.u_form_lastname {
+	grid-area: 5 / 1 / 6 / 2;
+	margin-left: 5px;
+	border-bottom: 1px solid #EEEEEE
+}
+.u_form_lastname_text { 
+	grid-area: 5 / 2 / 6 / 4;
+	border-bottom: 1px solid #EEEEEE
+	}
+.u_form_firstname {
+	margin-left: 5px;
+	grid-area: 6 / 1 / 7 / 2;
+	border-bottom: 1px solid #EEEEEE
+}
+.u_form_firstname_text {
+	grid-area: 6 / 2 / 7 / 4; 
+	border-bottom: 1px solid #EEEEEE
+}
+.u_form_email {
+	margin-left: 5px;
+	grid-area: 7 / 1 / 8 / 2;
+	border-bottom: 1px solid #EEEEEE
+	}
+.u_form_email_text { 
+	grid-area: 7 / 2 / 8 / 4;
+	border-bottom: 1px solid #EEEEEE
+	}
+.u_form_footer {
+	padding-top: 15px;
+	text-align: center;
+	grid-area: 8 / 1 / 9 / 4; }
+	
+.label_edit{
+	font-size:1.1em;
+	vertical-align: middle;
+}

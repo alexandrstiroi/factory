@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <title>Мануфактура уюта</title>
+    <meta charset="utf-8">
+    <link type="text/css" th:href="@{/assets/css/style.css}" href="./assets/css/style.css" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/assets/css/menu.css}" href="./assets/css/menu.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="parent">
+    <div class="div_header" th:insert="fragments/menu">
+
+    </div>
+    <div class="div_body"
+
+         th:insert="${fr}">
+
+    </div>
+    <div class="div_footer"> <h1>footer</h1> </div>
+</div>
+
+</body>
+</html>
