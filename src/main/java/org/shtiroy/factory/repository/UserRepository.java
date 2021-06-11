@@ -20,4 +20,17 @@ public interface UserRepository extends JpaRepository<User, Long> {
             nativeQuery = true)
     void updateLastLogin(Long id, Timestamp lastLogin);
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE working_data.t_user SET user_role = ?1,  last_name = ?2, first_name = ?3, " +
+            "email = ?4 WHERE id = ?5",
+           nativeQuery = true)
+    void updateUser(Long userRole, String lastName, String firstName, String email, Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE working_data.t_user SET user_password = ?1, user_role = ?2,  last_name = ?3, first_name = ?4, " +
+            "email = ?5 WHERE id = ?6",
+            nativeQuery = true)
+    void updateUserWithPassword(String password, Long userRole, String lastName, String firstName, String email, Long id);
 }
