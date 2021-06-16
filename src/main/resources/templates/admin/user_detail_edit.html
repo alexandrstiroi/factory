@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/main.css" th:href="@{/assets/css/main.css}" rel="stylesheet"/>
+    <link href="./css/menu.css" th:href="@{/assets/css/menu.css}" rel="stylesheet"/>
+    <link href="./css/menu.css" th:href="@{/assets/css/user_style.css}" rel="stylesheet"/>
+
+</head>
+<body>
+<div class="parent">
+    <div class="div_header" th:insert="fragments/menu">
+
+    </div>
+    <div class="div_body">
+        <div class="tools">
+            <div>
+                <ul>
+                    <li><a href="#">Настройка</a></li>
+                    <li><a href="/admin?fr=user">Пользователи</a></li>
+                    <li><a href="/admin?fr=employee">Сотрудники</a></li>
+                </ul>
+            </div>
+            <div style="padding: 5px">
+                <form action="/admin/user_detail" method="get">
+                    <button class="btn">Добавить</button>
+                </form>
+            </div>
+        </div>
+        <form action="/admin/user_detail" method="post" th:object="${user}">
+            <div class="user_form">
+                <div class="user_form_header">
+                    <span class="label_logo">Пользователь</span>
+                    <input type="hidden" name="id" th:value="${userEdit.getId()}"/>
+                </div>
+                <div class="user_form_login"><span>Логин</span></div>
+                <div class="user_form_login_text">
+                    <input class="inp" type="text" name="userName" placeholder="Логин" autocomplete="off" th:value="${userEdit.getUserName()}"/>
+                </div>
+                <div class="user_form_password"><span>Пароль</span></div>
+                <div class="user_form_password_text">
+                    <input class="inp" type="password" name="userPassword" placeholder="Пароль" autocomplete="off" value=""/>
+                </div>
+                <div class="user_form_role"><span>Роль</span></div>
+                <div class="user_form_role_text">
+                    <select class="inp" name="userRole">
+                        <option th:each="role : ${roles}"
+                                th:value="${role.getId()}"
+                                th:text="${role.getRoleName()}"
+                                th:selected="${role.getId() == userEdit.getUserRole().getId()}"></option>
+                    </select>
+                </div>
+                <div class="user_form_lastname"><span>Фамилия</span></div>
+                <div class="user_form_lastname_text">
+                    <input type="text" class="inp" name="lastName" placeholder="Фамилия" autocomplete="off" th:value="${userEdit.getLastName()}"/>
+                </div>
+                <div class="user_form_firstname"><span>Имя</span></div>
+                <div class="user_form_firstname_text">
+                    <input class="inp" type="text" name="firstName" placeholder="Имя" autocomplete="off" th:value="${userEdit.getFirstName()}"/>
+                </div>
+                <div class="user_form_email"><span>Почта</span></div>
+                <div class="user_form_email_text">
+                    <input class="inp" type="text" name="email" placeholder="Почта" autocomplete="off" th:value="${userEdit.getEmail()}"/>
+                </div>
+                <div class="user_form_footer">
+                    <button class="btn">Сохранить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="div_footer"></div>
+</div>
+</body>
+</html>

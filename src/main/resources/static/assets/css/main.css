@@ -1,0 +1,89 @@
+body{
+    padding: 0px;
+    margin: 0px;    
+    background: #F9F9F9;
+}
+
+.parent {
+
+}
+
+.div_header {
+
+}
+
+.div_body {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.div_footer {
+
+}
+
+.tools{
+    padding: 5px;
+    width: 100%;
+    border-top: 1px solid #D2D2D2;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid black;
+    background: white;
+}
+
+table td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table tr:nth-child(even){
+    background-color: #F9F9F9;
+}
+
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #F5F5F5;
+}
+
+.label_logo{
+    font-size: 1.2em;
+}
+
+.inp{
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: Courier New;
+    width: 99%;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
+.btn {
+    background: #E6E6E6;
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: Courier New;
+    padding: 5px 15px;
+    border: none;
+}
+
+.btn_small {
+    background: #E6E6E6;
+    border-radius: 4px;
+    font-size: 0.8em;
+    font-family: Courier New;
+    padding: 5px 5px;
+    border: none;
+}
+
+.btn:hover {
+    background: #C4C4C4;
+}

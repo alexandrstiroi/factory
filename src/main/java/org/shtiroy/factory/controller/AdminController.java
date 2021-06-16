@@ -36,13 +36,13 @@ public class AdminController {
 
         if (fragment.equals("user")) {
             List<User> users = userRepository.findAllByUserActive(true);
-            model.addAttribute("fr","fragments/user_form");
+            model.addAttribute("fr","fragments/user");
             model.addAttribute("users",users);
         }
 
         if (fragment.equals("employee")){
             List<Employee> employees = employeeRepository.findAllByWorks(true);
-            model.addAttribute("fr","fragments/employee_form");
+            model.addAttribute("fr","fragments/employee");
             model.addAttribute("employees", employees);
         }
 
@@ -50,18 +50,18 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping("/admin/user_page")
+    @GetMapping("/admin/user_detail")
     public String adminNewUser(Model model){
 
         List<Role> roles = roleRepository.findAll();
 
         model.addAttribute("roles", roles);
 
-        return "admin/user_page";
+        return "admin/user_detail";
 
     }
 
-    @PostMapping("/admin/user_page")
+    @PostMapping("/admin/user_detail")
     public String createNewUser(@ModelAttribute User user){
         user.setUserActive(true);
         user.setCreatedOn(new Date(System.currentTimeMillis()));
@@ -80,7 +80,7 @@ public class AdminController {
         model.addAttribute("userEdit",user);
         model.addAttribute("roles", roles);
 
-        return "admin/user_edit_page";
+        return "admin/user_detail_edit";
     }
 
     @PostMapping("/admin/useredit/save")

@@ -18,8 +18,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     @Modifying
     @Transactional
     @Query(value = "UPDATE working_data.t_employee SET first_name = ?1, last_name = ?2, " +
-                "middle_name = ?3, date_birth = ?4, works = ?5 WHERE id = ?6",
+                "middle_name = ?3, date_birth = ?4 WHERE id = ?5",
             nativeQuery = true)
-    void updateEmployee(String firstName, String lastName, String middleName, Date dateBirth, Boolean works, Long id);
+    void updateEmployee(String firstName, String lastName, String middleName, Date dateBirth, Long id);
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE working_data.t_employee SET works = false WHERE id = ?1",
+            nativeQuery = true)
+    void employeeDeactivation(Long id);
 }

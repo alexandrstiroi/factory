@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/main.css" th:href="@{/assets/css/main.css}" rel="stylesheet"/>
+        <link href="./css/menu.css" th:href="@{/assets/css/menu.css}" rel="stylesheet"/>
+        <link href="./css/employee_style.css" th:href="@{/assets/css/employee_style.css}" rel="stylesheet"/>
+    </head>
+    <body>
+        <div class="parent">
+            <div class="div_header" th:insert="fragments/menu">
+
+            </div>
+            <div class="div_body">
+                <div class="tools">
+                    <div>
+                        <ul>
+                            <li><a href="#">Настройка</a></li>
+                            <li><a href="/admin?fr=user">Пользователи</a></li>
+                            <li><a href="/admin?fr=employee">Сотрудники</a></li>
+                        </ul>
+                    </div>
+                    <div style="padding: 5px">
+                        <form action="/admin/employee_detail" method="get">
+                            <button class="btn">Добавить</button>
+                        </form>
+                    </div>
+                </div>
+                <form action="/admin/employee_detail" method="post" th:object="${employee}">
+                    <div class="employee_form">
+                        <div class="employee_form_header"><span class="label_logo">Сотрудник</span> </div>
+                        <div class="employee_form_lastname"><span class="label">Фамилия</span> </div>
+                        <div class="employee_form_lastname_text">
+                            <input class="inp" type="text" name="lastName" placeholder="Фамилия" />
+                        </div>
+                        <div class="employee_form_firstname"><span class="label">Имя</span></div>
+                        <div class="employee_form_firstname_text">
+                            <input class="inp" type="text" name="firstName" placeholder="Имя" />
+                        </div>
+                        <div class="employee_form_middlename"><span class="label">Отчество</span></div>
+                        <div class="employee_form_middlename_text">
+                            <input class="inp" type="text" name="middleName" placeholder="Отчество" />
+                        </div>
+                        <div class="employee_form_datebirth"><span class="label">Дата рождения</span></div>
+                        <div class="employee_form_datebirth_text">
+                            <input class="inp" type="date" name="dateBirth" placeholder="Дата рождения" />
+                        </div>
+                        <div class="employee_form_footer">
+                            <button class="btn">Сохранить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="div_footer"></div>
+        </div>
+    </body>
+</html>

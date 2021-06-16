@@ -1,51 +1,40 @@
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/main.css" th:href="@{assets/css/main.css}" rel="stylesheet"/>
+        <link href="./css/menu.css" th:href="@{assets/css/login_style.css}" rel="stylesheet"/>
 
-<head>
-    <title>Мануфактура  </title>
-    <meta charset="utf-8" />
-    <link type="text/css" th:href="@{/assets/css/style.css}" href="./assets/css/style.css" rel="stylesheet"/>
-    <link type="text/css" th:href="@{/assets/css/login.css}" href="./assets/css/login.css" rel="stylesheet"/>
-    <link type="text/css" th:href="@{/assets/css/u_style.css}" href="./assets/css/u_style.css" rel="stylesheet"/>
-</head>
+    </head>
+    <body>
+        <div class="parent">
 
-<body>
-
-    <div class="parent">
-        <div class="div_header">
-
+            <div class="div_body">
+                <form th:action="@{/login}" method="post">
+                    <div class="login_form">
+                        <div class="login_form_header">
+                            <span class="label_logo">Введите лонин и пароль</span>
+                            <span class="label_error" th:if="${param.error}">Нет такого пользователя или неверный пароль!</span>
+                        </div>
+                        <div class="login_form_user"><span class="label">Пользователь:</span></div>
+                        <div class="login_form_user_text">
+                            <input class="inp" type="text" name="username" placeholder="Пользователь"/>
+                        </div>
+                        <div class="login_form_password"><span>Пароль:</span></div>
+                        <div class="login_form_password_text">
+                            <input class="inp" type="password" name="password" placeholder="Пароль"/>
+                        </div>
+                        <div class="login_form_footer">
+                            <button class="btn">Вход</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="div_footer"></div>
         </div>
-        <div class="div_body">
-            <form th:action="@{/login}" method="post">
-                <div class="login_form">
-                    <div class="Login_form_error" th:if="${param.error}">
-                        Нет такого пользователя или неверный пароль!
-                    </div>
-                    <div class="login_from_username">
-                        <span class="label_edit">Пользователь:</span>
-                    </div>
-                    <div class="login_from_username_text">
-                        <input class="input_edit" type="text" name="username" placeholder="Пользователь"/>
-                    </div>
-                    <div class="login_from_password">
-                        <span class="label_edit">Пароль:</span>
-                    </div>
-                    <div class="login_from_password_text">
-                        <input class="input_edit" type="password" name="password" placeholder="Пароль"/>
-                    </div>
-                    <div class="login_from_submit"><!-- comment -->
-                        <input class="btn_new" type="submit" value="Вход"/>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="div_footer">
-            <h1>footer</h1>
-        </div>
-    </div>
-
-
-</body>
-
+    </body>
 </html>

@@ -1,0 +1,44 @@
+
+.login_form{
+    width: 380px;
+    background : white;
+    margin-top: 20%;
+
+
+    font-family: Courier New;
+
+    box-shadow: 0px 0px 26px -10px rgba(0,0,0,0.67);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.login_form_header { 
+    grid-area: 1 / 1 / 2 / 4;
+    padding: 5px;
+    border-bottom: 1px solid #D2D2D2;
+}
+.login_form_user { 
+    grid-area: 2 / 1 / 3 / 2;
+    padding: 10px 5px;
+}
+.login_form_user_text { 
+    grid-area: 2 / 2 / 3 / 4;
+    padding: 5px;
+}
+.login_form_password { 
+    grid-area: 3 / 1 / 4 / 2;
+    padding: 10px 5px;
+}
+.login_form_password_text { 
+    grid-area: 3 / 2 / 4 / 4;
+    padding: 5px;
+}
+.login_form_footer { 
+    grid-area: 4 / 1 / 5 / 4;
+    padding: 5px;
+    border-top: 1px solid #D2D2D2;
+    text-align: center;
+} 

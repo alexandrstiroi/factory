@@ -1,0 +1,57 @@
+.employee_form {
+    width: 440px;
+    box-shadow: 0px 0px 26px -10px rgba(0,0,0,0.67);
+    background : white;
+    margin-top: 5%;
+    font-family: Courier New;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.employee_form_header {
+    grid-area: 1 / 1 / 2 / 4;
+    padding: 5px;
+    border-bottom: 1px solid #D2D2D2;
+}
+.employee_form_lastname {
+    grid-area: 2 / 1 / 3 / 2;
+    padding: 10px 5px;
+}
+.employee_form_lastname_text {
+    grid-area: 2 / 2 / 3 / 4;
+    padding: 5px;
+}
+.employee_form_firstname {
+    grid-area: 3 / 1 / 4 / 2;
+    padding: 10px 5px;
+}
+.employee_form_firstname_text {
+    grid-area: 3 / 2 / 4 / 4;
+    padding: 5px;
+}
+.employee_form_middlename {
+    grid-area: 4 / 1 / 5 / 2;
+    padding: 10px 5px;
+}
+.employee_form_middlename_text {
+    grid-area: 4 / 2 / 5 / 4;
+    padding: 5px;
+}
+.employee_form_datebirth {
+    grid-area: 5 / 1 / 6 / 2;
+    padding: 10px 5px;
+}
+.employee_form_datebirth_text {
+    grid-area: 5 / 2 / 6 / 4;
+    padding: 5px;
+}
+.employee_form_footer {
+    grid-area: 6 / 1 / 7 / 4;
+    border-top: 1px solid #D2D2D2;
+    padding: 5px;
+    text-align: center;
+}

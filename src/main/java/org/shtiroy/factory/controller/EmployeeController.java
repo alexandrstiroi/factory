@@ -15,13 +15,13 @@ public class EmployeeController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @GetMapping("/admin/employee_page")
+    @GetMapping("/admin/employee_detail")
     public String adminNewEmployee(){
 
-        return "/admin/employee_page";
+        return "/admin/employee_detail";
     }
 
-    @PostMapping("/admin/employee_page")
+    @PostMapping("/admin/employee_detail")
     public String createNewEmployee(@ModelAttribute Employee employee){
 
         employee.setWorks(true);
@@ -30,17 +30,17 @@ public class EmployeeController {
         return "redirect:/admin?fr=employee";
     }
 
-    @PostMapping("/admin/employeeedit")
+    @PostMapping("/admin/employee_detail_edit")
     public String employeeEdit(@ModelAttribute("employeeId") String employeeId, Model model){
 
         Employee employee = employeeRepository.findById(Long.valueOf(employeeId)).get();
 
         model.addAttribute("employeeEdit", employee);
 
-        return "/admin/employee_edit_page";
+        return "/admin/employee_detail_edit";
     }
 
-    @PostMapping("/admin/employeeedit/save")
+    @PostMapping("/admin/employee_detail_edit/save")
     public String employeeEditSave(@ModelAttribute Employee employee){
 
         employeeRepository.updateEmployee(employee.getFirstName(), employee.getLastName(),employee.getMiddleName(),employee.getDateBirth(), employee.getId());
