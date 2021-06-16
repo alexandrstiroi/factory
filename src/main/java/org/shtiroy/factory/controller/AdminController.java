@@ -3,10 +3,13 @@ package org.shtiroy.factory.controller;
 import org.shtiroy.factory.entity.Employee;
 import org.shtiroy.factory.entity.Role;
 import org.shtiroy.factory.entity.User;
+import org.shtiroy.factory.entity.UserLog;
 import org.shtiroy.factory.repository.EmployeeRepository;
 import org.shtiroy.factory.repository.RoleRepository;
+import org.shtiroy.factory.repository.UserLogRepository;
 import org.shtiroy.factory.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +32,8 @@ public class AdminController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private UserLogRepository userLogRepository;
 
     @GetMapping("/admin")
     public String adminGet(@ModelAttribute("fr") String fragment, Model model){
@@ -62,12 +67,13 @@ public class AdminController {
     }
 
     @PostMapping("/admin/user_detail")
-    public String createNewUser(@ModelAttribute User user){
+    public String createNewUser(@ModelAttribute User user, Authentication authentication){
         user.setUserActive(true);
         user.setCreatedOn(new Date(System.currentTimeMillis()));
         user.setUserPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);
-
+        UserLog userLog = new UserLog(authentication,"CREATE NEW USER",user.toString());
+        userLogRepository.save(userLog);
         return "redirect:/admin?fr=user";
     }
 
@@ -84,7 +90,7 @@ public class AdminController {
     }
 
     @PostMapping("/admin/useredit/save")
-    public String userEditSave(@ModelAttribute User user){
+    public String userEditSave(@ModelAttribute User user, Authentication authentication){
         if (user.getUserPassword().equals("")) {
             userRepository.updateUser(user.getUserRole().getId(),user.getLastName(), user.getFirstName(), user.getEmail(), user.getId());
         } else {
@@ -92,14 +98,18 @@ public class AdminController {
             userRepository.updateUserWithPassword(user.getUserPassword(), user.getUserRole().getId(),user.getLastName(), user.getFirstName(), user.getEmail(), user.getId());
         }
 
+        UserLog userLog = new UserLog(authentication,"EDIT USER",user.toString());
+        userLogRepository.save(userLog);
         return "redirect:/admin?fr=user";
     }
 
     @PostMapping("/admin/userdelete")
-    public String userDelete(@ModelAttribute("userId") String userId){
+    public String userDelete(@ModelAttribute("userId") String userId, Authentication authentication){
 
         userRepository.userDeactivation(Long.valueOf(userId));
-
+        User user = userRepository.findById(Long.valueOf(userId)).get();
+        UserLog userLog = new UserLog(authentication,"DELETE USER",user.toString());
+        userLogRepository.save(userLog);
         return "redirect:/admin?fr=user";
     }
 }

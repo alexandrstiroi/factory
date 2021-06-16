@@ -1,5 +1,7 @@
 package org.shtiroy.factory.entity;
 
+import org.springframework.security.core.Authentication;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -31,6 +33,15 @@ public class UserLog {
         this.id = id;
         this.userId = userId;
         this.logDate = logDate;
+        this.operationLog = operationLog;
+        this.paramsLog = paramsLog;
+    }
+
+    public UserLog(Authentication authentication, String operationLog, String paramsLog){
+        User user = (User) authentication.getPrincipal();
+
+        this.userId = user;
+        this.logDate = new Timestamp(System.currentTimeMillis());
         this.operationLog = operationLog;
         this.paramsLog = paramsLog;
     }
