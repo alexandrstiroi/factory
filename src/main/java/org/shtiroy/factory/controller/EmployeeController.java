@@ -18,7 +18,7 @@ public class EmployeeController {
     @GetMapping("/admin/employee_detail")
     public String adminNewEmployee(){
 
-        return "/admin/employee_detail";
+        return "admin/employee_detail";
     }
 
     @PostMapping("/admin/employee_detail")
@@ -37,7 +37,7 @@ public class EmployeeController {
 
         model.addAttribute("employeeEdit", employee);
 
-        return "/admin/employee_detail_edit";
+        return "admin/employee_detail_edit";
     }
 
     @PostMapping("/admin/employee_detail_edit/save")
