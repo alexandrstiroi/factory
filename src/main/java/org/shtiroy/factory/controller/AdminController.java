@@ -1,13 +1,7 @@
 package org.shtiroy.factory.controller;
 
-import org.shtiroy.factory.entity.Employee;
-import org.shtiroy.factory.entity.Role;
-import org.shtiroy.factory.entity.User;
-import org.shtiroy.factory.entity.UserLog;
-import org.shtiroy.factory.repository.EmployeeRepository;
-import org.shtiroy.factory.repository.RoleRepository;
-import org.shtiroy.factory.repository.UserLogRepository;
-import org.shtiroy.factory.repository.UserRepository;
+import org.shtiroy.factory.entity.*;
+import org.shtiroy.factory.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,6 +29,9 @@ public class AdminController {
     @Autowired
     private UserLogRepository userLogRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @GetMapping("/admin")
     public String adminGet(@ModelAttribute("fr") String fragment, Model model){
 
@@ -49,6 +46,12 @@ public class AdminController {
             List<Employee> employees = employeeRepository.findAllByWorks(true);
             model.addAttribute("fr","fragments/employee");
             model.addAttribute("employees", employees);
+        }
+
+        if (fragment.equals("product")){
+            List<Product> products = productRepository.findAllByStatus(true);
+            model.addAttribute("fr","fragments/product");
+            model.addAttribute("products", products);
         }
 
 

@@ -1,0 +1,37 @@
+<div>
+    <ul>
+        <li><a href="#">Настройка</a></li>
+        <li ><a href="/admin?fr=user">Пользователи</a></li>
+        <li><a href="/admin?fr=employee">Сотрудники</a></li>
+        <li class="active"><a href="#">Изделия</a> </li>
+    </ul>
+</div>
+<div style="padding: 5px">
+    <form action="/admin/product_detail" method="get">
+        <button class="btn">Добавить</button>
+    </form>
+</div>
+<table>
+    <thead>
+        <th></th>
+        <th>Название</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr th:each="product : ${products}">
+            <td>
+                <form action="#" th:action="@{/admin/productedit}" method="post">
+                    <input type="hidden" th:value="${product.getId()}" id="productId" name="productId" />
+                    <button class="btn_small">изменить</button>
+                </form>
+            </td>
+            <td th:text="${product.getName()}"></td>
+            <td>
+                <form action="#" th:action="@{/admin/productdelete}" method="post">
+                    <input type="hidden" th:value="${product.getId()}" name="productId" />
+                    <button class="btn_small" >удалить</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>

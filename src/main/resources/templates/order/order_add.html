@@ -1,0 +1,77 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+  <head>
+    <title>Мануфактура</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/main.css" th:href="@{/assets/css/main.css}" rel="stylesheet"/>
+    <link href="./css/menu.css" th:href="@{/assets/css/menu.css}" rel="stylesheet"/>
+    <link href="./css/order_style.css" th:href="@{/assets/css/order_style.css}" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="div_header" th:insert="fragments/menu"></div>
+      <div class="div_body">
+        <div class="tool">
+          <div class="order_form">
+            <div class="order_form_number_shop"><span class="label">Магазинный номер</span></div>
+            <div class="order_form_number_shop_text"><input class="inp" type="text" id="numberShop" placeholder="Магазинный номер" /></div>
+            <div class="order_form_date"><span class="label">Дата оформления</span></div>
+            <div class="order_form_date_text"><input class="inp" id="dateRegistration" type="date" /></div>
+            <div class="order_form_number_factory"><span class="label">Фабричный номер</span></div>
+            <div class="order_form_number_factory_text"><input class="inp" id="numberFactory" type="text" placeholder="Фабричный номер"/></div>
+            <div class="order_form_date_deliver"><span class="label">Дата изготовления</span></div>
+            <div class="order_form_date_deliver_text"><input class="inp" id="dateProduction" type="date" /></div>
+            <div class="order_form_supplement"><span class="label">Дополнения</span></div>
+            <div class="order_form_supplement_text"><input class="inp" id="supplement" type="text" placeholder="Дополнения" /></div>
+          </div>
+
+          <div class="order_client_form">
+            <div class="order_client_form_shop"><span class="label">Магазин</span> </div>
+            <div class="order_client_form_shop_text">
+              <select class="inp" name="shop" id="shopId" onchange="shopAddress()">
+                <option>Выберите магазин</option>
+                <option th:each="shop : ${shops}"
+                        th:value="${shop.getId()}"
+
+                        th:text="${shop.getShopName()}">
+                </option>
+              </select>
+            </div>
+            <div class="order_client_form_shop_address"><span class="label">Адрес</span></div>
+            <div class="order_client_form_shop_address_text"><input type="text" class="inp" id="shopAddress" /></div>
+            <div class="order_client_form_client"><span class="label">Покупатель</span></div>
+            <div class="order_client_form_client_text"><input type="text" class="inp" id="customerName" /></div>
+            <div class="order_client_form_client_tel"><span class="label">Телефон</span></div>
+            <div class="order_client_form_client_tel_text"><input type="text" class="inp" id="customerPhone" /></div>
+            <div class="order_client_form_address_del"><span class="label">Адрес доставки</span></div>
+            <div class="order_client_form_address_del_text"><input type="text" class="inp" id="deliveryAddress"/></div>
+          </div>
+          <div class="order_composition">
+            <table id="productComposition">
+              <tr>
+                <td>Изделие</td>
+                <td colspan="7">
+                  <select class="inp" name="product" id="productId" onchange="getComponents()">
+                    <option>Выберите изделие</option>
+                    <option th:each="product : ${products}"
+                            th:value="${product.getId()}"
+                            th:text="${product.getName()}">
+
+                    </option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+
+          </div>
+          <div class="order_save">
+            <button class="btn" name="saveOrder" onclick="orderSave()">Сохранить</button>
+          </div>
+        </div>
+      </div>
+      <div class="div_footer"></div>
+    </div>
+  <script src="/assets/js/order.js"></script>
+</body>
+</html>

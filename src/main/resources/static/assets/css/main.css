@@ -53,8 +53,12 @@ table th {
 
 .label_logo{
     font-size: 1.2em;
+    font-family: Courier New;
 }
 
+.label{
+    font-family: Courier New;
+}
 .inp{
     border-radius: 4px;
     font-size: 1em;
