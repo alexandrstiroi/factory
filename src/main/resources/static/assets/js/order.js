@@ -31,7 +31,7 @@ function getComponents(){
         var table = document.getElementById("productComposition");
         products.forEach(function(item, index){
             var row = table.insertRow(table.rows.length);
-
+            row.id = "component";
             row.insertCell(0).innerHTML = "<button class='btn_small' onclick='getProperties(this, "+ item.id +")'><img style='width: 16px' src='/assets/ico/add-2.png'/></button><input type='hidden' name='componentID' value='"+item.id+"'>";
             var cell = row.insertCell(1);
             cell.innerHTML = item.name;
@@ -57,7 +57,8 @@ function getProperties(r, componentId){
         console.log(properties);
         properties.forEach(function(item, index){
             var row = table.insertRow(rowIndex+1);
-            row.insertCell(0).innerHTML = "<input type='hidden' name='propertiesId' value='"+item.id+"'><input type='hidden' name='propertiesType' value='"+item.type+"'>";
+            row.id = 'properties';
+            row.insertCell(0).innerHTML = "<input type='hidden' name='componentId' value='"+componentId+"'/><input type='hidden' name='propertiesId' value='"+item.id+"'><input type='hidden' name='propertiesType' value='"+item.type+"'>";
             var cell1 = row.insertCell(1);
             cell1.style.width="5%";
             var cell2 = row.insertCell(2);
@@ -223,7 +224,9 @@ function orderSave(){
     order.dateProduction = document.getElementById("dateProduction").value;
     order.supplement = document.getElementById("supplement").value;
     order.idShop = document.getElementById("shopId").value;
-
+    order.clientName = document.getElementById("clientName").value;
+    order.clientPhone = document.getElementById("clientPhone").value;
+    order.clientAddress = document.getElementById("clientAddress").value;
     console.log(order.numberShop);
     console.log(order);
 
