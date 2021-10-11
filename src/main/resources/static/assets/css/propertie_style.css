@@ -8,7 +8,7 @@
 
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
@@ -51,23 +51,23 @@
     padding: 5px;
 }
 .propertie_form_count {
-    grid-area: 6 / 1 / 7 / 2;
+    grid-area: 8 / 1 / 7 / 2;
     padding: 10px 5px;
 }
 .propertie_form_count_text {
-    grid-area: 6 / 2 / 7 / 4;
+    grid-area: 8 / 2 / 7 / 4;
     padding: 5px;
 }
 .propertie_form_type {
-    grid-area: 7 / 1 / 8 / 2;
+    grid-area: 9 / 1 / 8 / 2;
     padding: 10px 5px;
 }
 .propertie_form_type_text {
-    grid-area: 7 / 2 / 8 / 4;
+    grid-area: 9 / 2 / 8 / 4;
     padding: 5px;
 }
 .propertie_form_footer {
-    grid-area: 8 / 1 / 9 / 4;
+    grid-area: 6 / 1 / 9 / 4;
     border-top: 1px solid #D2D2D2;
     padding: 5px;
     text-align: center;

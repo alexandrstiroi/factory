@@ -33,6 +33,7 @@ public class OrderRestController {
 
     @PostMapping("/order/order_add/getShop")
     public Shop getShopById(@ModelAttribute("shopId") String shopId){
+        System.out.println("shopId" + shopId);
         Shop shop = shopRepository.findById(Integer.valueOf(shopId)).get();
 
         return shop;

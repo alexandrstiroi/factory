@@ -2,14 +2,9 @@ package org.shtiroy.factory.controller;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.shtiroy.factory.entity.Component;
-import org.shtiroy.factory.entity.Product;
-import org.shtiroy.factory.entity.Propertie;
-import org.shtiroy.factory.entity.UserLog;
-import org.shtiroy.factory.repository.ComponentRepository;
-import org.shtiroy.factory.repository.ProductRepository;
-import org.shtiroy.factory.repository.PropertieRepository;
-import org.shtiroy.factory.repository.UserLogRepository;
+import org.shtiroy.factory.entity.*;
+import org.shtiroy.factory.entity.Module;
+import org.shtiroy.factory.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -33,11 +28,42 @@ public class ProductController {
     @Autowired
     private PropertieRepository propertieRepository;
 
+    @Autowired
+    private ModuleRepository moduleRepository;
+
     @GetMapping("/admin/product_detail")
     public String adminNewProduct(){
         return "admin/product_detail";
     }
 
+    @GetMapping("admin/product_add")
+    public String getProductAddPage(){
+        return "admin/product_add";
+    }
+
+    @PostMapping("/admin/product_add")
+    public String adminSaveProduct(@ModelAttribute("product") String product, Authentication authentication){
+        Product productObj = new Product();
+
+        JSONObject jsonObject = new JSONObject(product);
+
+        productObj.setName(jsonObject.getString("name"));
+        productObj.setStatus(true);
+
+        productObj = productRepository.save(productObj);
+
+        JSONArray jsonArray = jsonObject.optJSONArray("modules");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            Module module = new Module(productObj, jsonArray.getJSONObject(i).getString("name"),
+                    jsonArray.getJSONObject(i).getString("unique"),
+                    jsonArray.getJSONObject(i).getInt("isAddition"));
+            Module moduleSaved = moduleRepository.save(module);
+            for (int x = 0; x < jsonArray.getJSONObject(i).getJSONArray("moduleTypes").length(); x++) {
+                
+            }
+        }
+        return "redirect:/admin?fr=product";
+    }
     @PostMapping("/admin/product_detail")
     public String adminSaveNewProduct(@ModelAttribute("product") String product, Authentication authentication){
 

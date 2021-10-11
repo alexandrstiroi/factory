@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+    <html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Мануфактура</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/main.css" th:href="@{/assets/css/main.css}" rel="stylesheet"/>
+        <link href="./css/menu.css" th:href="@{/assets/css/menu.css}" rel="stylesheet"/>
+        <link href="/assets/css/product_modal_style.css" rel="stylesheet"/>
+        <link href="/assets/css/product_style.css" rel="stylesheet"/>
+        <link href="/assets/css/component_style.css" rel="stylesheet"/>
+        <link href="/assets/css/propertie_style.css" rel="stylesheet"/>
+    </head>
+    <body>
+    <div class="parent">
+        <div class="div_header" th:insert="fragments/menu"></div>
+        <div class="div_body">
+            <div class="tools">
+                <div>
+                    <ul>
+                        <li><a href="#">Настройка</a></li>
+                        <li><a href="/admin?fr=user">Пользователи</a></li>
+                        <li><a href="/admin?fr=employee">Сотрудники</a></li>
+                        <li class="active"><a href="/admin?fr=product">Изделия</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tools" style="padding: 5px">
+                <button class="btn" onclick="saveProductServer()">Сохранить</button><span id="error"></span>
+            </div>
+            <div class="tools" style="padding: 5px">
+                <table id="product">
+                    <thead>
+                    <th id="addProductBtn" style="width: 35px">
+                        <button class="btn_small" id="productBtn">
+                            <img style="width: 16px" src="/assets/ico/add.png" alt="Добавить"/>
+                        </button>
+                    </th>
+                    <th colspan="5">Изделия</th>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+
+                <div id="productModal" class="modal">
+
+                    <span class="close">&times;</span>
+                    <div class="product_form">
+                        <div class="product_form_header"><span class="label_logo">Изделие</span></div>
+                        <div class="product_form_name"><span class="label">Наименование</span></div>
+                        <div class="product_form_name_text"><input id="nameProduct" class="inp" type="text" name="name" placeholder="Изделие" /></div>
+                        <div class="product_form_footer"><button class="btn" onclick="addProductName()">Сохранить</button></div>
+                    </div>
+
+                </div>
+
+                <div id="moduleModal" class="modal">
+                    <span class="close">&times;</span><!-- comment -->
+                    <div class="module_form">
+                        <div class="module_form_header"><span class="label_logo">Свойство</span></div>
+                        <div class="module_form_name"><span class="label">Наименование</span></div>
+                        <div class="module_form_name_text">
+                            <input id="moduleName" type="text" class="inp" name="name" placeholder="Свойство изделия" />
+                        </div>
+                        <div class="module_form_unique"><span class="label">Нам.</span></div>
+                        <div class="module_form_unique_text">
+                            <select id="moduleUnique" class="inp" name="unique">
+                                <option value="true">Только один</option>
+                                <option value="false">Несколько</option>
+                            </select>
+                        </div>
+                        <div class="module_form_is_addition"><span class="label">Дополнительный</span></div>
+                        <div class="module_form_is_addition_text">
+                            <select id="moduleIsAddition" class="inp" name="isAddition">
+                                <option value="0">Не дополнительный</option>
+                                <option value="1">Дополнительный</option>
+                            </select>
+                        </div>
+                        <div class="module_form_footer"><button class="btn" onclick="addModule()">Сохранить</button></div>
+                    </div>
+                </div>
+
+                <div id="moduleTypeModal" class="modal">
+                    <span class="close">&times;</span>
+                    <div class="propertie_form">
+                        <div class="propertie_form_header"><span class="label_logo">Свойство</span></div>
+                        <div class="propertie_form_name"><span class="label">Наименование</span></div>
+                        <div class="propertie_form_name_text">
+                            <input class="inp" type="text" name="name" id="moduleTypeName" placeholder="Наименование"/>
+                        </div>
+                        <div class="propertie_form_lenght"><span class="label">Длинна</span></div>
+                        <div class="propertie_form_lenght_text">
+                            <input class="inp" type="text" name="lenght" id="moduleTypeDepth" placeholder="Глубина" />
+                        </div>
+
+                        <div class="propertie_form_width"><span class="label">Ширина</span></div>
+                        <div class="propertie_form_width_text">
+                            <input class="inp" type="text" name="lenght" id="moduleTypeWidth" placeholder="Ширина" />
+                        </div>
+
+                        <div class="propertie_form_height"><span class="label">Глубина</span></div>
+                        <div class="propertie_form_height_text">
+                            <input class="inp" type="text" name="lenght" id="moduleTypeHeight" placeholder="Высота" />
+                        </div>
+                        <div class="propertie_form_footer"><button class="btn" onclick="addModuleType()">Сохранить</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="div_footer"></div>
+        <script th:src="@{/assets/js/products_add.js}"></script>
+    </div>
+    </body>
+</html>
