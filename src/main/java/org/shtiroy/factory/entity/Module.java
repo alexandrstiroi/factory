@@ -22,7 +22,7 @@ public class Module {
     private String moduleName;
 
     @Column(name = "module_unique")
-    private String moduleUnique;
+    private Boolean moduleUnique;
 
     @Column(name = "module_is_addition")
     private Integer  moduleIsAddition;
@@ -30,14 +30,14 @@ public class Module {
     public Module() {
     }
 
-    public Module(Product idProduct, String moduleName, String moduleUnique, Integer moduleIsAddition) {
+    public Module(Product idProduct, String moduleName, Boolean moduleUnique, Integer moduleIsAddition) {
         this.idProduct = idProduct;
         this.moduleName = moduleName;
         this.moduleUnique = moduleUnique;
         this.moduleIsAddition = moduleIsAddition;
     }
 
-    public Module(Integer idModule, Product idProduct, Photo idPhoto, String moduleName, String moduleUnique, Integer moduleIsAddition) {
+    public Module(Integer idModule, Product idProduct, Photo idPhoto, String moduleName, Boolean moduleUnique, Integer moduleIsAddition) {
         this.idModule = idModule;
         this.idProduct = idProduct;
         this.idPhoto = idPhoto;
@@ -78,11 +78,11 @@ public class Module {
         this.moduleName = moduleName;
     }
 
-    public String getModuleUnique() {
+    public Boolean getModuleUnique() {
         return moduleUnique;
     }
 
-    public void setModuleUnique(String moduleUnique) {
+    public void setModuleUnique(Boolean moduleUnique) {
         this.moduleUnique = moduleUnique;
     }
 

@@ -89,8 +89,11 @@ function addModule(){
     var moduleName = document.getElementById("moduleName");
     var moduleUnique = document.getElementById("moduleUnique").options[document.getElementById("moduleUnique").selectedIndex].value;
     var moduleIsAddition = document.getElementById("moduleIsAddition").options[document.getElementById("moduleIsAddition").selectedIndex].value;
-
-    rowModuleName.insertCell(0).innerHTML = "<button class='btn_small' onclick='showModuleTypeForm()'><img style='width: 16px' style='width: 16px' src='/assets/ico/add.png' /></button>";
+    if (moduleIsAddition == -1) {
+        rowModuleName.insertCell(0).innerHTML = "<button class='btn_small' onclick='showModuleTypeForm()'><img style='width: 16px' style='width: 16px' src='/assets/ico/add.png' /></button>";
+    } else {
+        rowModuleName.insertCell(0).innerHTML = "";
+    }
     var cell = rowModuleName.insertCell(1);
     cell.colSpan = "5";
     cell.innerHTML = moduleName.value;
@@ -155,4 +158,19 @@ function saveProductServer(){
 }
 function save(){
     console.log(product);
+    if(product.modules.length === 0) {
+        document.getElementById("error").innerHTML = "Введите данные изделия!!!";
+    } else {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/admin/pr_in", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        xhr.onload = function() {
+            location.replace("/admin?fr=product")
+        };
+
+        var data = "product="+JSON.stringify(product);
+        xhr.send(data);
+    }
+
 }

@@ -32,6 +32,9 @@ public class AdminController {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private AccessoryRepository accessoryRepository;
+
     @GetMapping("/admin")
     public String adminGet(@ModelAttribute("fr") String fragment, Model model){
 
@@ -54,6 +57,11 @@ public class AdminController {
             model.addAttribute("products", products);
         }
 
+        if(fragment.equals("accessories")){
+            List<Accessory> accessories = accessoryRepository.findAll();
+            model.addAttribute("fr","fragments/accessories");
+            model.addAttribute("accessories",accessories);
+        }
 
         return "admin";
     }

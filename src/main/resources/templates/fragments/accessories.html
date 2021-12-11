@@ -1,0 +1,28 @@
+<div>
+    <ul>
+        <li><a href="#">Настройка</a></li>
+        <li><a href="/admin?fr=user">Пользователи</a></li>
+        <li><a href="/admin?fr=employee">Сотрудники</a></li>
+        <li><a href="/admin?fr=product">Изделия</a></li>
+        <li class="active"><a href="#">Акссесуары</a></li>
+    </ul>
+</div>
+<div style="padding: 5px">
+    <form action="/admin/accessories_add" method="get">
+        <button class="btn">Добавить</button>
+    </form>
+</div>
+<table>
+    <thead>
+        <th></th>
+        <th>Наименование</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr th:each="accessory : ${accessories}">
+            <td></td>
+            <td th:utext="${accessory.getModuleAdditionalName()}"></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

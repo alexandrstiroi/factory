@@ -24,11 +24,12 @@
                         <li><a href="/admin?fr=user">Пользователи</a></li>
                         <li><a href="/admin?fr=employee">Сотрудники</a></li>
                         <li class="active"><a href="/admin?fr=product">Изделия</a></li>
+                        <li><a href="/admin?fr=accessories">Акссесуары</a></li>
                     </ul>
                 </div>
             </div>
             <div class="tools" style="padding: 5px">
-                <button class="btn" onclick="saveProductServer()">Сохранить</button><span id="error"></span>
+                <button class="btn" onclick="save()">Сохранить</button><span id="error"></span>
             </div>
             <div class="tools" style="padding: 5px">
                 <table id="product">
@@ -72,11 +73,15 @@
                                 <option value="false">Несколько</option>
                             </select>
                         </div>
-                        <div class="module_form_is_addition"><span class="label">Дополнительный</span></div>
+                        <div class="module_form_is_addition"><span class="label">Аксессуар</span></div>
                         <div class="module_form_is_addition_text">
                             <select id="moduleIsAddition" class="inp" name="isAddition">
-                                <option value="0">Не дополнительный</option>
-                                <option value="1">Дополнительный</option>
+                                <option value="-1" selected disabled hidden>Choose here</option>
+                                <option value="1">Ткани</option>
+                                <option value="2">Нити</option>
+                                <option value="3">Пленка ПВХ</option>
+                                <option value="4">Короба</option>
+                                <option value="0">Аксессуар</option>
                             </select>
                         </div>
                         <div class="module_form_footer"><button class="btn" onclick="addModule()">Сохранить</button></div>

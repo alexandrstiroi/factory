@@ -29,6 +29,14 @@ public class Order {
     @Column(name = "supplement")
     private String supplement;
 
+    @ManyToOne(targetEntity = Shop.class)
+    @JoinColumn(name = "id_shop")
+    private Shop idShop;
+
+    @ManyToOne(targetEntity = Client.class)
+    @JoinColumn(name = "id_client")
+    private Client idClient;
+
     public Order() {
     }
 
@@ -105,6 +113,22 @@ public class Order {
 
     public void setSupplement(String supplement) {
         this.supplement = supplement;
+    }
+
+    public Shop getIdShop() {
+        return idShop;
+    }
+
+    public void setIdShop(Shop idShop) {
+        this.idShop = idShop;
+    }
+
+    public Client getIdClient() {
+        return idClient;
+    }
+
+    public void setIdClient(Client idClient) {
+        this.idClient = idClient;
     }
 
     @Override

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Мануфактура</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/main.css" th:href="@{/assets/css/main.css}" rel="stylesheet"/>
+        <link href="./css/menu.css" th:href="@{/assets/css/menu.css}" rel="stylesheet"/>
+        <link href="./css/accessories_add_style.css" th:href="@{/assets/css/accessories_add_style.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="parent">
+            <div class="div_header" th:insert="fragments/menu"></div>
+            <div class="div_body">
+                <div class="tools">
+                    <div>
+                        <ul>
+                            <li><a href="#">Настройка</a></li>
+                            <li><a href="/admin?fr=user">Пользователи</a></li>
+                            <li><a href="/admin?fr=employee">Сотрудники</a></li>
+                            <li><a href="/admin?fr=product">Изделия</a></li>
+                            <li class="active"><a href="/admin?fr=accessories">Акссесуары</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <form class="accessories" action="/admin/accessories_add" method="post" th:object="${accessory}">
+                    <div class="accessories_form">
+                        <div class="accessories_form_header"><span class="label_logo">Акссесуар</span> </div>
+                        <div class="accessories_form_name"><span class="label">Наименование</span> </div>
+                        <div class="accessories_form_name_text">
+                            <input class="inp" type="text" name="moduleAdditionalName" placeholder="Наименование" />
+                        </div>
+                        <div class="accessories_form_footer"><button class="btn">Сохранить</button></div>
+                    </div>
+                </form>
+            </div>
+            <div class="div_footer"></div>
+        </div>
+    </body>
+</html>

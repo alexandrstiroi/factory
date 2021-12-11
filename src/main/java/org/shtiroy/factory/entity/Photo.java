@@ -3,7 +3,7 @@ package org.shtiroy.factory.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(schema = "working_data", name = "photo")
+@Table(schema = "working_data", name = "t_photo")
 public class Photo {
 
     @Id
