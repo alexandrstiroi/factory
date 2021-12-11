@@ -7,6 +7,8 @@
     <link href="./css/main.css" th:href="@{/assets/css/main.css}" rel="stylesheet"/>
     <link href="./css/menu.css" th:href="@{/assets/css/menu.css}" rel="stylesheet"/>
     <link href="./css/order_style.css" th:href="@{/assets/css/order_style.css}" rel="stylesheet"/>
+    <link href="/assets/css/product_modal_style.css" rel="stylesheet"/>
+    <link href="/assets/css/order_modal_forms.css" rel="stylesheet"/>
   </head>
   <body>
     <div class="parent">
@@ -52,7 +54,7 @@
               <tr>
                 <td>Изделие</td>
                 <td colspan="7">
-                  <select class="inp" name="product" id="productId" onchange="getComponents()">
+                  <select class="inp" name="product" id="productId" onchange="getModules()">
                     <option>Выберите изделие</option>
                     <option th:each="product : ${products}"
                             th:value="${product.getId()}"
@@ -66,12 +68,46 @@
 
           </div>
           <div class="order_save">
-            <button class="btn" name="saveOrder" onclick="orderSave()">Сохранить</button>
+            <button class="btn" name="saveOrder" onclick="orderSaveNew()">Сохранить</button>
+          </div>
+        </div>
+        <div id="moduleTypeModal" class="modal">
+          <div class="moduleTypes_form">
+            <div class="moduleTypes_form_header"><span id="moduleName" class="label">header</span></div>
+            <div>
+              <table id="moduleTypeList">
+
+              </table>
+            </div>
+            <div class="moduleTypes_form_footer"><button class="btn" id="addModuleType" name="addModuleType" onclick="addModuleTypes()">Выбрать</button></div>
+          </div>
+        </div>
+        <div id="accessoryModal" class="modal">
+          <div class="moduleTypes_form">
+            <div class="moduleTypes_form_header"><span id="accessoryName" class="label"></span> </div>
+            <div>
+              <table id="accessoryList">
+
+              </table>
+            </div>
+            <div class="moduleTypes_form_footer"><button class="btn" id="addAccessory" name="addAccessory" onclick="addAccessory()">Выбрать</button></div>
+          </div>
+        </div>
+        <div id="consumableModal" class="modal">
+          <div class="moduleTypes_form">
+            <div class="moduleTypes_form_header"><span id="consumableName" class="label"></span> </div>
+            <div>
+              <table id="consumableList">
+
+              </table>
+            </div>
+            <div class="moduleTypes_form_footer"><button class="btn" id="addConsumable" name="addConsumable" onclick="addConsumable()">Выбрать</button></div>
           </div>
         </div>
       </div>
       <div class="div_footer"></div>
     </div>
-  <script src="/assets/js/order.js"></script>
-</body>
+    <script src="/assets/js/order.js"></script>
+    <script src="/assets/js/order_add.js"></script>
+  </body>
 </html>

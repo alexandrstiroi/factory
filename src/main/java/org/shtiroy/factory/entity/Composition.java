@@ -14,26 +14,31 @@ public class Composition {
     @JoinColumn(name = "id_order_product")
     private OrderProduct idOrderProduct;
 
-    @ManyToOne(targetEntity = Product.class)
-    @JoinColumn(name = "id_product")
-    private OrderProduct idProduct;
+    @ManyToOne(targetEntity = Module.class)
+    @JoinColumn(name = "id_module")
+    private Module idModule;
 
-    @ManyToOne(targetEntity = Component.class)
-    @JoinColumn(name = "id_component")
-    private OrderProduct idComponent;
+    @ManyToOne(targetEntity = Accessory.class)
+    @JoinColumn(name = "id_accessory")
+    private Accessory idAccessory;
 
-    @ManyToOne(targetEntity = Propertie.class)
-    @JoinColumn(name = "id_propertie")
-    private OrderProduct idPropertie;
+    @ManyToOne(targetEntity = Consumable.class)
+    @JoinColumn(name = "id_consumable")
+    private Consumable idConsumable;
+
+    @ManyToOne(targetEntity = ModuleType.class)
+    @JoinColumn(name = "id_module_type")
+    private ModuleType idModuleType;
 
     public Composition() {
     }
 
-    public Composition(OrderProduct idOrderProduct, OrderProduct idProduct, OrderProduct idComponent, OrderProduct idPropertie) {
+    public Composition(OrderProduct idOrderProduct, Module idModule, Accessory idAccessory, Consumable idConsumable, ModuleType idModuleType) {
         this.idOrderProduct = idOrderProduct;
-        this.idProduct = idProduct;
-        this.idComponent = idComponent;
-        this.idPropertie = idPropertie;
+        this.idModule = idModule;
+        this.idAccessory = idAccessory;
+        this.idConsumable = idConsumable;
+        this.idModuleType = idModuleType;
     }
 
     public Integer getId() {
@@ -52,29 +57,35 @@ public class Composition {
         this.idOrderProduct = idOrderProduct;
     }
 
-    public OrderProduct getIdProduct() {
-        return idProduct;
+    public Module getIdModule() {
+        return idModule;
     }
 
-    public void setIdProduct(OrderProduct idProduct) {
-        this.idProduct = idProduct;
+    public void setIdModule(Module idModule) {
+        this.idModule = idModule;
     }
 
-    public OrderProduct getIdComponent() {
-        return idComponent;
+    public Accessory getIdAccessory() {
+        return idAccessory;
     }
 
-    public void setIdComponent(OrderProduct idComponent) {
-        this.idComponent = idComponent;
+    public void setIdAccessory(Accessory idAccessory) {
+        this.idAccessory = idAccessory;
     }
 
-    public OrderProduct getIdPropertie() {
-        return idPropertie;
+    public Consumable getIdConsumable() {
+        return idConsumable;
     }
 
-    public void setIdPropertie(OrderProduct idPropertie) {
-        this.idPropertie = idPropertie;
+    public void setIdConsumable(Consumable idConsumable) {
+        this.idConsumable = idConsumable;
     }
 
+    public ModuleType getIdModuleType() {
+        return idModuleType;
+    }
 
+    public void setIdModuleType(ModuleType idModuleType) {
+        this.idModuleType = idModuleType;
+    }
 }

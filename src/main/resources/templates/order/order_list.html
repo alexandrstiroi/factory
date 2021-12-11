@@ -33,7 +33,42 @@
               <button class="btn">Добавить</button>
             </form>
           </div>
-
+          <table>
+            <thead>
+              <th>Фабричный Номер</th>
+              <th>Магазиный Номер</th>
+              <th>Дата П/отгрузки</th>
+              <th>Дата заказа</th>
+              <th>Наи. дилера</th>
+              <th>Закрой</th>
+              <th>Швея</th>
+              <th>Отстрочка</th>
+              <th>Столяр</th>
+              <th>Резчик Поролон</th>
+              <th>Поклейщик</th>
+              <th>Обивщик</th>
+              <th>Декор</th>
+              <th>Настройки</th>
+            </thead>
+            <tbody>
+              <tr th:each="order : ${orders}">
+                <td th:utext="${order.getNumberFactory()}"></td>
+                <td th:utext="${order.getNumberShop()}"></td>
+                <td th:utext="${order.getDateRegistration()}"></td>
+                <td th:utext="${order.getDateDelivery()}"></td>
+                <td th:utext="${order.getIdShop().getShopName()}"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <div class="div_footer"></div>
