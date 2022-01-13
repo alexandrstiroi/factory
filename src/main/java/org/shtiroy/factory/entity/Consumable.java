@@ -86,6 +86,6 @@ public class Consumable {
 
     @Override
     public String toString() {
-        return consumableName + " " + consumableColor + " " + consumableCat;
+        return consumableName + " " + consumableColor + " кат. " + consumableCat;
     }
 }

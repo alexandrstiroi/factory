@@ -110,6 +110,13 @@
                         <div class="propertie_form_height_text">
                             <input class="inp" type="text" name="lenght" id="moduleTypeHeight" placeholder="Высота" />
                         </div>
+                        <div class="propertie_form_photo"><span class="label">Картинка</span> </div>
+                        <div class="propertie_form_photo_path">
+                            <input type="hidden" id="idPhoto" name="idPhoto">
+                            <input class="inp_little" type="file" name="photoPath" id="photoPath" placeholder="Картинка" accept="image/jpeg,image/png,image/gif"/>
+                            <button class="btn_small" onclick="saveImage()" id="savePhoto"><img style="width: 16px" src="/assets/ico/add_file.png" width="16px"/></button>
+
+                        </div>
                         <div class="propertie_form_footer"><button class="btn" onclick="addModuleType()">Сохранить</button></div>
                     </div>
                 </div>

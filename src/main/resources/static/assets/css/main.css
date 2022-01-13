@@ -69,6 +69,16 @@ table th {
     border: 1px solid #ccc;
     resize: vertical;
 }
+.inp_little{
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: Courier New;
+    width: 90%;
+    box-sizing: border-box;
+    padding: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
 
 .btn {
     background: #E6E6E6;

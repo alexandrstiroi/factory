@@ -72,6 +72,8 @@ function getModuleTypes(r, idModule){
             row.insertCell(2).innerHTML = item.depth;
             row.insertCell(3).innerHTML = item.width;
             row.insertCell(4).innerHTML = item.height;
+            if (item.idPhoto != null)
+                row.insertCell(5).innerHTML = "<img src='../"+ item.idPhoto.photoPath+"' width=32px/>"
             /*var cell = row.insertCell(4)
             cell.innerHTML = item.moduleTypeName;*/
         });
@@ -205,7 +207,6 @@ function orderSaveNew(){
     product.accessoryList = accessories;
     product.consumableList = consumables;
 
-    console.log(product);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/order/order_save", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

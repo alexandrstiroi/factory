@@ -313,3 +313,7 @@ function checkOrderEmpty(){
 
     return result;
 }
+
+function getOrderPdf(idOrder){
+
+}
