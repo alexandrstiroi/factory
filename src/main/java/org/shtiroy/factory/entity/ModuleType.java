@@ -110,6 +110,20 @@ public class ModuleType {
 
     @Override
     public String toString() {
-        return "ModuleType[" + moduleTypeName + "]";
+        StringBuilder result = new StringBuilder();
+
+        if (moduleTypeName != null) {
+            result.append(moduleTypeName).append(" ");
+        }
+        if (depth != null) {
+            result.append(depth);
+        }
+        if (width != null) {
+            result.append("x").append(width);
+        }
+        if (height != null) {
+            result.append("x").append(height);
+        }
+        return result.toString();
     }
 }

@@ -8,11 +8,16 @@ import org.shtiroy.factory.entity.*;
 import org.shtiroy.factory.entity.Module;
 import org.shtiroy.factory.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 
 @Controller
@@ -32,6 +37,8 @@ public class ProductController {
     private ModuleRepository moduleRepository;
     @Autowired
     private ModuleTypeRepository moduleTypeRepository;
+    @Autowired
+    private PhotoRepository photoRepository;
 
     @GetMapping("/admin/product_detail")
     public String adminNewProduct(){
@@ -66,6 +73,7 @@ public class ProductController {
         }
         return "redirect:/admin?fr=product";
     }
+
     @PostMapping("/admin/product_detail")
     public String adminSaveNewProduct(@ModelAttribute("product") String product, Authentication authentication){
 
@@ -150,17 +158,21 @@ public class ProductController {
 
             for(int x = 0; x < moduleArray.getJSONObject(i).getJSONArray("moduleTypes").length(); x++){
                 ModuleType moduleType = new ModuleType();
+                Photo photo = null;
                 String name = moduleArray.getJSONObject(i).getJSONArray("moduleTypes").getJSONObject(x).getString("name");
                 Double depth = 0.0, width = 0.0, height = 0.0;
+                if (!moduleArray.getJSONObject(i).getJSONArray("moduleTypes").getJSONObject(x).getString("idPhoto").equals("")){
+                    String idPhoto = moduleArray.getJSONObject(i).getJSONArray("moduleTypes").getJSONObject(x).getString("idPhoto");
+                    photo = photoRepository.getOne(Integer.valueOf(idPhoto));
+                }
 
                 if (moduleArray.getJSONObject(i).getJSONArray("moduleTypes").getJSONObject(x).getString("name").equals("")) {
                     moduleType.setModuleTypeName(null);
                 } else {
                     moduleType.setModuleTypeName(moduleArray.getJSONObject(i).getJSONArray("moduleTypes").getJSONObject(x).getString("name"));
                 }
-
                 moduleType.setIdModule(module);
-
+                moduleType.setIdPhoto(photo);
                 if (moduleArray.getJSONObject(i).getJSONArray("moduleTypes").getJSONObject(x).getString("depth").equals("")) {
                     moduleType.setDepth(null);
                 } else {

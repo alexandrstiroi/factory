@@ -16,6 +16,10 @@ public class Photo {
     public Photo() {
     }
 
+    public Photo(String photoPath) {
+        this.photoPath = photoPath;
+    }
+
     public Photo(Integer idPhoto, String photoPath) {
         this.idPhoto = idPhoto;
         this.photoPath = photoPath;

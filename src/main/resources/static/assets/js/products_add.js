@@ -56,6 +56,9 @@ function showModuleTypeForm(){
     for (var input in inputs){
         inputs[input].value = "";
     }
+    document.getElementById("photoPath").hidden = false;
+    document.getElementById("savePhoto").hidden = false;
+    document.getElementById("idPhoto").value = "";
     moduleTypeModal.style.display = "block";
 }
 
@@ -120,6 +123,7 @@ function addModuleType(){
     moduleType.depth = document.getElementById("moduleTypeDepth").value;
     moduleType.width = document.getElementById("moduleTypeWidth").value;
     moduleType.height = document.getElementById("moduleTypeHeight").value;
+    moduleType.idPhoto = document.getElementById("idPhoto").value;
 
     rowModuleType.insertCell(0).innerHTML = "";
     rowModuleType.insertCell(1).innerHTML = document.getElementById("moduleTypeName").value;
@@ -173,4 +177,28 @@ function save(){
         xhr.send(data);
     }
 
+}
+
+function saveImage(){
+
+
+    var formData = new FormData();
+    var folderName = document.getElementById("product").rows[1].cells[1].innerHTML;
+    var file = document.querySelector('#photoPath');
+    formData.append("image",file.files[0]);
+    formData.append("folderName",folderName);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/admin/product_detail/saveImage",true);
+    xhr.onload = function() {
+        if(xhr.status === 200){
+            console.log(xhr.responseText);
+            var photo = JSON.parse(xhr.responseText);
+            console.log(photo);
+            console.log(photo.idPhoto);
+            document.getElementById("idPhoto").value = photo.idPhoto;
+            document.getElementById("photoPath").hidden = true;
+            document.getElementById("savePhoto").hidden = true;
+        }
+    };
+    xhr.send(formData);
 }

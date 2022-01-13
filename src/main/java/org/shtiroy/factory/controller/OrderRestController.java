@@ -7,11 +7,18 @@ import org.shtiroy.factory.entity.*;
 import org.shtiroy.factory.entity.Module;
 import org.shtiroy.factory.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -36,6 +43,10 @@ public class OrderRestController {
     private AccessoryRepository accessoryRepository;
     @Autowired
     private ConsumableRepository consumableRepository;
+    @Autowired
+    private PhotoRepository photoRepository;
+    @Value("${factory.files}")
+    private String filesPath;
 
     @PostMapping("/order/order_add/getShop")
     public Shop getShopById(@ModelAttribute("shopId") String shopId){
@@ -92,5 +103,28 @@ public class OrderRestController {
         UserLog userLog = new UserLog(authentication,"GET CONSUMABLE","idModule=" + idModule+"@moduleIsAddition="+moduleIsAddition);
         userLogRepository.save(userLog);
         return consumableRepository.findByConsumableTypeOrderByConsumableCatAscConsumableName(Integer.parseInt(moduleIsAddition));
+    }
+
+    @PostMapping("/admin/product_detail/saveImage")
+    public Photo saveImage(@ModelAttribute("image") MultipartFile image, @ModelAttribute("folderName") String folderName,
+                           Authentication authentication){
+        LOGGER.info("CALL saveImage()");
+        String strFolder = filesPath+"images/"+folderName;
+        if (Files.notExists(Paths.get(strFolder))){
+            LOGGER.info("make dir");
+            new File(strFolder).mkdir();
+        }
+        int countFile = new File(strFolder).list().length;
+        Photo photo = new Photo("files\\images\\"+folderName+"\\"+folderName+countFile+".jpeg");
+        File file = new File(strFolder+"/"+folderName+countFile+".jpeg");
+        try {
+            image.transferTo(file);
+            LOGGER.info("saved image");
+        } catch (IOException | IllegalStateException ex){
+            LOGGER.info(ex.getMessage());
+        }
+        photo = photoRepository.save(photo);
+        LOGGER.info("send image path");
+        return photo;
     }
 }

@@ -52,6 +52,6 @@ public class Accessory {
 
     @Override
     public String toString() {
-        return "accessoryName=[" + accessoryName + "]";
+        return accessoryName;
     }
 }

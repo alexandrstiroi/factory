@@ -65,7 +65,13 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td><button style="margin-right: 1px;" class="btn_small" onclick=""><img style="width: 16px;" src="/assets/ico/edit.png"/></button>
+                  <a th:href="@{'/order/print/' + ${order.getId()}}" target="_blank">
+                      <button class="btn_small" onclick="getOrderPdf(${order.getIdShop().getShopName()})">
+                        <img style="width: 16px" src="/assets/ico/print.png"/>
+                      </button>
+                  </a>
+                </td>
               </tr>
             </tbody>
           </table>
